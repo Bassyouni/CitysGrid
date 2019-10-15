@@ -8,50 +8,52 @@
 
 import UIKit
 import GoogleMaps
+import RxSwift
 
 class ViewController: UIViewController {
 
+    // MARK: - variables
     var tree: IntervalTree!
     var mapView: GMSMapView!
     var regions = [Region]()
+    var bag = DisposeBag()
     
-    let colors: [UIColor] = [UIColor.red, .blue, .magenta, .black, .purple, .cyan, .brown, .darkGray, .orange]
+    var currentRegion: Region?
     
+    // MARK: - view lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .purple
-        
-        
-        setupMap()
+    
+        configureUI()
         setupGrid()
-        
-        let button = UIButton(frame: CGRect(x: view.frame.width - 100, y: view.frame.height - 100, width: 50, height: 50))
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("again", for: .normal)
-        button.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
-        button.addTarget(self, action: #selector(setupRegions), for: .touchUpInside)
-        view.addSubview(button)
-        button.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        button.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        
+        setupRegions()
+        setupMQTT()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            self.setupRegions()
-        }
-       
-    }
+    
+    // MARK: - UI
+    func configureUI() {
+    view.backgroundColor = .purple
+    let button = UIButton(frame: CGRect(x: view.frame.width - 100, y: view.frame.height - 100, width: 50, height: 50))
+    button.translatesAutoresizingMaskIntoConstraints = false
+    button.setTitle("again", for: .normal)
+    button.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
+    button.addTarget(self, action: #selector(setupRegions), for: .touchUpInside)
+    view.addSubview(button)
+    button.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+    button.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+    
+    setupMap()
+}
     
     // MARK: - map
-    fileprivate func setupMap() {
-        let camera = GMSCameraPosition.camera(withLatitude: 25.089694, longitude: 55.256633, zoom: 9)
+    func setupMap() {
+        let camera = GMSCameraPosition.camera(withLatitude: 25.089694, longitude: 55.256633, zoom: 12)
         mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
         view.addSubview(mapView)
     }
     
-    fileprivate func putMarkersOnMap(from coordinates: [[Coordinate]]) {
+    func putMarkersOnMap(from coordinates: [[Coordinate]]) {
         for i in 0..<coordinates.count {
             for j in 0..<coordinates[i].count {
                 let marker = GMSMarker(position: coordinates[i][j].coordinate2D)
@@ -61,8 +63,9 @@ class ViewController: UIViewController {
         }
     }
     
-    fileprivate func addRegionsPolygons(with grid: [[Coordinate]]) {
+    func addRegionsPolygons(with grid: [[Coordinate]]) {
         var polygonsPathArray = [GMSMutablePath]()
+        let colors: [UIColor] = [UIColor.red, .blue, .magenta, .black, .purple, .cyan, .brown, .darkGray, .orange]
 
         for i in 0..<grid.count - 1
         {
@@ -85,10 +88,6 @@ class ViewController: UIViewController {
             }
         }
         
-        addNeighnours(rowCount: (grid.first?.count ?? 0) - 1 )
-        
-        
-        
         for (i , path) in polygonsPathArray.enumerated()
         {
             let polygon = GMSPolygon(path: path)
@@ -99,243 +98,98 @@ class ViewController: UIViewController {
         }
         
         
-        putMarkersOnMap(from: [regions.map { $0.centerCoordinate }] )
+//        putMarkersOnMap(from: [regions.map { $0.centerCoordinate }] )
         
     }
     
-    // MARK: - grid algoritiom
-    fileprivate func setupGrid() {
     
-        let topLeft = Coordinate(latitude: 25.36308, longitude: 55.288780)
-        let topRight = Coordinate(latitude: 25.234892, longitude: 55.562463)
-        let bottomLeft = Coordinate(latitude: 24.953261, longitude: 54.812796)
-        let bottomRight = Coordinate(latitude: 24.794440, longitude: 55.077634)
-        
-        var arrayLength: [Coordinate] = [bottomRight]
-        var arrayWidth: [Coordinate] = []
-        
-        let xLengthDif = abs(topRight.latitude - bottomRight.latitude)
-        let yLengthDif = abs(topRight.longitude - bottomRight.longitude)
-
-        let xWitdhDif = abs(bottomLeft.latitude - bottomRight.latitude)
-        let yWitdhDif = abs(bottomLeft.longitude - bottomRight.longitude)
-
-        
-        print("topLeft to topRight 'width': ",topLeft.location.distance(from: topRight.location) / 1000.0, " KM \n")
-        print("bottomLeft to bottomRight 'width': ",bottomLeft.location.distance(from: bottomRight.location) / 1000.0, " KM \n")
-        print("bottomLeft to topLeft 'length': ",bottomLeft.location.distance(from: topLeft.location) / 1000.0, " KM \n")
-        print("bottomRight to topRight 'length': ",bottomRight.location.distance(from: topRight.location) / 1000.0, " KM \n")
-        
-        
-        let n: Double = 4
-        for i in 1..<Int(n)
-        {
-            let step = (Double(i) / n)
-            
-            var newLengthLat: Double!
-            var newLengthLong: Double!
-            
-            if bottomRight.latitude < topRight.latitude {
-                newLengthLat = bottomRight.latitude + ( xLengthDif * step )
-            } else {
-                newLengthLat = bottomRight.latitude - ( xLengthDif * step )
-            }
-            
-            if bottomRight.longitude < topRight.longitude {
-                newLengthLong = bottomRight.longitude + (yLengthDif * step )
-            } else {
-                newLengthLong = bottomRight.longitude - (yLengthDif * step )
-            }
-            
-            arrayLength.append(Coordinate(latitude: newLengthLat, longitude: newLengthLong))
-
-            var newWidthLat: Double!
-            var newWidthLong: Double!
-            
-            if bottomRight.latitude < bottomLeft.latitude {
-                newWidthLat = bottomRight.latitude + ( xWitdhDif * step )
-            } else {
-                newWidthLat = bottomRight.latitude - ( xWitdhDif * step )
-            }
-            
-            if bottomRight.longitude < bottomLeft.longitude {
-                newWidthLong = bottomRight.longitude + (yWitdhDif * step )
-            } else {
-                newWidthLong = bottomRight.longitude - (yWitdhDif * step )
-            }
-            
-            arrayWidth.append(Coordinate(latitude: newWidthLat, longitude: newWidthLong))
-        }
-
-        arrayLength.append(topRight)
-        arrayWidth.append(bottomLeft)
-        
-        let gridArray = getGridFormArrays(length: arrayLength, width: arrayWidth)
-
-        
-//        putMarkersOnMap(from: gridArray)
-        addRegionsPolygons(with: gridArray)
-        
-
-    }
-    
-    fileprivate func getGridFormArrays(length arrayLength: [Coordinate], width arrayWidth: [Coordinate]) -> [[Coordinate]] {
-        
-        let lengthEquation = getSlopeAndBValueFrom(point1: arrayLength[0], point2: arrayLength[arrayLength.count - 1])
-        let widthEquation = getSlopeAndBValueFrom(point1: arrayWidth[0], point2: arrayWidth[arrayWidth.count - 1])
-        
-        var gridArray = [[Coordinate]]()
-        
-        for lengthCoordinate in arrayLength
-        {
-            let lineLenBValue = lengthCoordinate.longitude - (widthEquation.slope * lengthCoordinate.latitude)
-            var array = [Coordinate]()
-            for widthCoordinate in arrayWidth
+    // MARK: - MQTT
+    func setupMQTT() {
+        MQTTManager.sharedConnection.connect()
+        MQTTManager.sharedConnection.connectionStatus
+            .retry()
+            .subscribe(onNext: { (isConnected) in
+            if isConnected
             {
-                let lineWidBValue = widthCoordinate.longitude - (lengthEquation.slope * widthCoordinate.latitude)
-                
-                // x first unkowen  = (bValue2 - bValue1) / (slope1 - slope2)
-                let latX = (lineWidBValue - lineLenBValue) / (widthEquation.slope - lengthEquation.slope)
-                // y second unkwon = (slope* x) + b
-                let longY = (lengthEquation.slope * latX) + lineWidBValue
-                array.append(Coordinate(latitude: latX, longitude: longY))
+                self.startOperation()
             }
-            gridArray.append(array)
-        }
-        
-        for i in 0..<arrayLength.count
-        {
-            gridArray[i].insert(arrayLength[i], at: 0)
-        }
-        
-        return gridArray
-    }
-    
-    fileprivate func getSlopeAndBValueFrom(point1: Coordinate, point2: Coordinate) -> (slope: Double, bValue: Double) {
-        
-        let lineSlope = (point2.longitude - point1.longitude) / (point2.latitude - point1.latitude)
-        
-        // y = mx + b <--
-        // y - mx = b
-        // y = (lineSlope * X) + lineBValue
-        let lineBValue = point1.longitude - (lineSlope * point1.latitude)
-        
-        return (lineSlope, lineBValue)
+        }, onError: { (error) in
+            print(error.localizedDescription)
+        })
+        .disposed(by: bag)
     }
     
     
-    
-    // MARK: - saving and retrieving regions
-    @objc func setupRegions() {
+    // MARK: - Driver Logic
+    func startOperation() {
         
-        var locationCor = Coordinate(latitude: 25.116492, longitude: 55.390433)
-        let marker = GMSMarker(position: locationCor.coordinate2D)
+        let marker = GMSMarker(position: driverPath[0].coordinate2D)
         marker.title = "moving marker"
         marker.map = self.mapView
         
-        var inc: Double = 0.5
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (_) in
+        currentRegion = tree.nodeFor(value: driverPath[0])?.region
+        
+        
+        if let currentRegion = currentRegion
+        {
+            publishLocation(at: driverPath[0], region: currentRegion)
+        }
+        
+        var index = 1
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (timer) in
+            guard index < driverPath.count else {
+                timer.invalidate()
+                return
+            }
+            
             CATransaction.begin()
-            CATransaction.setAnimationDuration(1.0)
-            locationCor.latitude += 0.5
-            locationCor.longitude += 0.5
-            marker.position = CLLocationCoordinate2D(latitude: locationCor.latitude + inc, longitude: locationCor.longitude + inc)
+            CATransaction.setAnimationDuration(0.1)
+            marker.position = driverPath[index].coordinate2D
+            self.mapView.animate(toLocation:  driverPath[index].coordinate2D)
             CATransaction.commit()
             
-            inc += 0.5
-        }
-        
-        tree = IntervalTree()
-        regions.sort()
-        
-//        print(regions)
-        
-        tree.constructTreeWith(regions: regions)
-
-        let tacmeLocation = Coordinate(latitude: 25.285876, longitude: 55.477316)
-        let sharjaOutSideDubaiLocation = Coordinate(latitude: 25.298839, longitude: 55.481870)
-
-        
-//        tree.printLevelOrder()
-//
-//        tree.print2dD()
-        
-        if let node = tree.nodeFor(value: tacmeLocation) {
-            putMarkersOnMap(from: [[tacmeLocation]])
-            print(node)
-        }
-
-        if let node = tree.nodeFor(value: sharjaOutSideDubaiLocation) {
-            putMarkersOnMap(from: [[sharjaOutSideDubaiLocation]])
-            print(node)
-        }
-        
-        tree.print2dD()
-
-    }
-    
-    
-    fileprivate func addNeighnours(rowCount: Int) {
-        
-        guard rowCount > 0 && regions.count % rowCount == 0 else { return }
-        
-        var regionsMatrix = [[Region]]()
-        
-        let topLevelCount = regions.count / rowCount
-        
-        for i in 0..<topLevelCount
-        {
-            var tempArray = [Region]()
+           
+            self.checkRegionAndPublish(with: driverPath[index])
             
-            for j in 0..<rowCount
-            {
-                tempArray.append(regions[(i * rowCount) + j])
-            }
-            regionsMatrix.append(tempArray)
+            index += 1
         }
-        
-        for x in 0..<regionsMatrix.count
-        {
-            for (y, region) in regionsMatrix[x].enumerated()
-            {
-                if x+1 < regionsMatrix.count
-                {
-                    region.neighbours.append(regionsMatrix[x+1][y])
-                    if y + 1 < regionsMatrix[x+1].count
-                    {
-                        region.neighbours.append(regionsMatrix[x+1][y+1])
-                    }
-                    if y - 1 >= 0
-                    {
-                        region.neighbours.append(regionsMatrix[x+1][y-1])
-                    }
-                }
-                
-                if x-1 >= 0
-                {
-                    region.neighbours.append(regionsMatrix[x-1][y])
-                    if y + 1 < regionsMatrix[x-1].count
-                    {
-                        region.neighbours.append(regionsMatrix[x-1][y+1])
-                    }
-                    if y - 1 >= 0
-                    {
-                        region.neighbours.append(regionsMatrix[x-1][y-1])
-                    }
-                }
-                
-                if y + 1 < regionsMatrix[x].count
-                {
-                    region.neighbours.append(regionsMatrix[x][y+1])
-                }
-                if y - 1 >= 0
-                {
-                    region.neighbours.append(regionsMatrix[x][y-1])
-                }
-            }
-        }
-        
-        
     }
+    
+    func checkRegionAndPublish(with coordinate: Coordinate)
+    {
+        if let currentRegion = currentRegion
+        {
+            if currentRegion.contains(coordinate)
+            {
+                publishLocation(at: coordinate, region: currentRegion)
+            }
+            else
+            {
+                publishLeaveAction(region: currentRegion)
+                self.currentRegion = currentRegion.neighbour(for: coordinate)
+                checkRegionAndPublish(with: coordinate)
+            }
+            
+        }
+        else
+        {
+            currentRegion = self.tree.nodeFor(value: coordinate)?.region
+            
+            if currentRegion != nil {
+                checkRegionAndPublish(with: coordinate)
+            }
+        }
+    }
+    
+    func publishLocation(at coordinate: Coordinate, region: Region)
+    {
+        MQTTManager.sharedConnection.publish(message: "{'carId': 1, 'lat': \(coordinate.latitude), 'long': \(coordinate.latitude)}", topic: "tawseel/drivers/\(region.id)")
+    }
+    
+    func publishLeaveAction(region: Region)
+    {
+        MQTTManager.sharedConnection.publish(message: "{'carId': 1, 'action': 'Left this region'", topic: "tawseel/drivers/\(region.id)")
+    }
+        
     
 }

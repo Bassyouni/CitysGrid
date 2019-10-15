@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		043318302355C3F3004754A7 /* MQTTWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0433182F2355C3F3004754A7 /* MQTTWrapper.swift */; };
+		04B79CC22355F98400A685B5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B79CC12355F98400A685B5 /* Constants.swift */; };
 		04BE56CA2345F3390097161C /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BE56C92345F3390097161C /* Region.swift */; };
 		04BE56CD2345F3680097161C /* TreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BE56CC2345F3680097161C /* TreeNode.swift */; };
 		04BE56CF2345F6D20097161C /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BE56CE2345F6D20097161C /* Coordinate.swift */; };
@@ -19,6 +20,7 @@
 		04DE184B2344AB0B00D74FC4 /* PerformanceTestingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DE184A2344AB0B00D74FC4 /* PerformanceTestingTests.swift */; };
 		04DE18562344AB0B00D74FC4 /* PerformanceTestingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DE18552344AB0B00D74FC4 /* PerformanceTestingUITests.swift */; };
 		04DE18652344B03B00D74FC4 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DE18642344B03B00D74FC4 /* Tree.swift */; };
+		04EDE4522355F0AE00ED382E /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EDE4512355F0AE00ED382E /* ViewController+Extension.swift */; };
 		0D94440604168340BF037B98 /* Pods_PerformanceTestingUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E01759125C51398A5C055743 /* Pods_PerformanceTestingUITests.framework */; };
 		BC307D073F2DE5AA2BC30021 /* Pods_PerformanceTesting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B60C61E3C51685528CBA9947 /* Pods_PerformanceTesting.framework */; };
 		F1DB828D72E5F7CF5A1D81B5 /* Pods_PerformanceTestingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 722F9FA27E03039D8AE94D50 /* Pods_PerformanceTestingTests.framework */; };
@@ -43,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		0433182F2355C3F3004754A7 /* MQTTWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTWrapper.swift; sourceTree = "<group>"; };
+		04B79CC12355F98400A685B5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		04BE56C92345F3390097161C /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 		04BE56CC2345F3680097161C /* TreeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeNode.swift; sourceTree = "<group>"; };
 		04BE56CE2345F6D20097161C /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
@@ -60,6 +63,7 @@
 		04DE18552344AB0B00D74FC4 /* PerformanceTestingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceTestingUITests.swift; sourceTree = "<group>"; };
 		04DE18572344AB0B00D74FC4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04DE18642344B03B00D74FC4 /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
+		04EDE4512355F0AE00ED382E /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
 		5BC5DA9ADE29AF86BCCA886D /* Pods-PerformanceTesting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerformanceTesting.release.xcconfig"; path = "Target Support Files/Pods-PerformanceTesting/Pods-PerformanceTesting.release.xcconfig"; sourceTree = "<group>"; };
 		722F9FA27E03039D8AE94D50 /* Pods_PerformanceTestingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PerformanceTestingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81BEFAABC025C31F919FDA39 /* Pods-PerformanceTesting.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerformanceTesting.debug.xcconfig"; path = "Target Support Files/Pods-PerformanceTesting/Pods-PerformanceTesting.debug.xcconfig"; sourceTree = "<group>"; };
@@ -118,6 +122,14 @@
 			path = Boilerplate;
 			sourceTree = "<group>";
 		};
+		04B79CC02355F97800A685B5 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				04B79CC12355F98400A685B5 /* Constants.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		04BE56C82345F31E0097161C /* Regions */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,10 +167,12 @@
 		04DE18342344AB0300D74FC4 /* PerformanceTesting */ = {
 			isa = PBXGroup;
 			children = (
+				04B79CC02355F97800A685B5 /* Data */,
 				0433182E2355C3BD004754A7 /* Boilerplate */,
 				0433182D2355C3B7004754A7 /* MQTT */,
 				04BE56C82345F31E0097161C /* Regions */,
 				04DE18372344AB0300D74FC4 /* ViewController.swift */,
+				04EDE4512355F0AE00ED382E /* ViewController+Extension.swift */,
 			);
 			path = PerformanceTesting;
 			sourceTree = "<group>";
@@ -467,6 +481,8 @@
 				04C7911F2354BCB1005AF7C4 /* EdgeCoordinates.swift in Sources */,
 				043318302355C3F3004754A7 /* MQTTWrapper.swift in Sources */,
 				04DE18382344AB0300D74FC4 /* ViewController.swift in Sources */,
+				04B79CC22355F98400A685B5 /* Constants.swift in Sources */,
+				04EDE4522355F0AE00ED382E /* ViewController+Extension.swift in Sources */,
 				04DE18362344AB0300D74FC4 /* AppDelegate.swift in Sources */,
 				04BE56CA2345F3390097161C /* Region.swift in Sources */,
 				04BE56CF2345F6D20097161C /* Coordinate.swift in Sources */,
