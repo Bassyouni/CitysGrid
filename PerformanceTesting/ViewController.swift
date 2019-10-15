@@ -22,7 +22,6 @@ class ViewController: UIViewController {
         view.backgroundColor = .purple
         
         
-        
         setupMap()
         setupGrid()
         
@@ -226,6 +225,23 @@ class ViewController: UIViewController {
     
     // MARK: - saving and retrieving regions
     @objc func setupRegions() {
+        
+        var locationCor = Coordinate(latitude: 25.116492, longitude: 55.390433)
+        let marker = GMSMarker(position: locationCor.coordinate2D)
+        marker.title = "moving marker"
+        marker.map = self.mapView
+        
+        var inc: Double = 0.5
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (_) in
+            CATransaction.begin()
+            CATransaction.setAnimationDuration(1.0)
+            locationCor.latitude += 0.5
+            locationCor.longitude += 0.5
+            marker.position = CLLocationCoordinate2D(latitude: locationCor.latitude + inc, longitude: locationCor.longitude + inc)
+            CATransaction.commit()
+            
+            inc += 0.5
+        }
         
         tree = IntervalTree()
         regions.sort()

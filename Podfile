@@ -6,6 +6,9 @@ target 'PerformanceTesting' do
   use_frameworks!
 pod 'GoogleMaps'
   pod 'GooglePlaces'
+  pod 'CocoaMQTT'
+  pod 'RxSwift', '4.4.1'
+  pod 'RxCocoa', '4.4.1'
 
   # Pods for PerformanceTesting
 
