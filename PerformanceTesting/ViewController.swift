@@ -86,6 +86,8 @@ class ViewController: UIViewController {
             }
         }
         
+        addNeighnours(rowCount: (grid.first?.count ?? 0) - 1 )
+        
         
         
         for (i , path) in polygonsPathArray.enumerated()
@@ -253,16 +255,71 @@ class ViewController: UIViewController {
         }
         
         tree.print2dD()
+
+    }
+    
+    
+    fileprivate func addNeighnours(rowCount: Int) {
         
-        func getDocumentsDirectory() -> URL {
-            var paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-            let documentsDirectory = paths[0].appendingPathComponent("mineJson")
-            return documentsDirectory
+        guard rowCount > 0 && regions.count % rowCount == 0 else { return }
+        
+        var regionsMatrix = [[Region]]()
+        
+        let topLevelCount = regions.count / rowCount
+        
+        for i in 0..<topLevelCount
+        {
+            var tempArray = [Region]()
+            
+            for j in 0..<rowCount
+            {
+                tempArray.append(regions[(i * rowCount) + j])
+            }
+            regionsMatrix.append(tempArray)
         }
         
-       
+        for x in 0..<regionsMatrix.count
+        {
+            for (y, region) in regionsMatrix[x].enumerated()
+            {
+                if x+1 < regionsMatrix.count
+                {
+                    region.neighbours.append(regionsMatrix[x+1][y])
+                    if y + 1 < regionsMatrix[x+1].count
+                    {
+                        region.neighbours.append(regionsMatrix[x+1][y+1])
+                    }
+                    if y - 1 >= 0
+                    {
+                        region.neighbours.append(regionsMatrix[x+1][y-1])
+                    }
+                }
+                
+                if x-1 >= 0
+                {
+                    region.neighbours.append(regionsMatrix[x-1][y])
+                    if y + 1 < regionsMatrix[x-1].count
+                    {
+                        region.neighbours.append(regionsMatrix[x-1][y+1])
+                    }
+                    if y - 1 >= 0
+                    {
+                        region.neighbours.append(regionsMatrix[x-1][y-1])
+                    }
+                }
+                
+                if y + 1 < regionsMatrix[x].count
+                {
+                    region.neighbours.append(regionsMatrix[x][y+1])
+                }
+                if y - 1 >= 0
+                {
+                    region.neighbours.append(regionsMatrix[x][y-1])
+                }
+            }
+        }
         
-
+        
     }
     
 }

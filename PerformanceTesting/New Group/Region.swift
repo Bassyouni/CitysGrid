@@ -13,7 +13,7 @@ class Region {
     // MARK: - variables
     let id: Int
     let edgeCoordinates: EdgeCoordinates
-    let neighbours: [Region]?
+    var neighbours: [Region]
     
     
     // MARK: - init
@@ -30,7 +30,7 @@ class Region {
     }
     
     func neighbour(for coordinate: Coordinate) -> Region? {
-        return neighbours!.first(where: { (neighbourRegion) -> Bool in
+        return neighbours.first(where: { (neighbourRegion) -> Bool in
             neighbourRegion.contains(coordinate)
         })
     }
