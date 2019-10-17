@@ -184,12 +184,12 @@ class ViewController: UIViewController {
     
     func publishLocation(at coordinate: Coordinate, region: Region)
     {
-        MQTTManager.sharedConnection.publish(message: "{'carId': 1, 'lat': \(coordinate.latitude), 'long': \(coordinate.latitude)}", topic: "tawseel/drivers/\(region.id)")
+        MQTTManager.sharedConnection.publish(message: "{\"carId\": 1, \"lat\": \(coordinate.latitude), \"long\": \(coordinate.latitude)}", topic: "tawseel/drivers/\(region.id)")
     }
     
     func publishLeaveAction(region: Region)
     {
-        MQTTManager.sharedConnection.publish(message: "{'carId': 1, 'action': 'Left this region'", topic: "tawseel/drivers/\(region.id)")
+        MQTTManager.sharedConnection.publish(message: "{\"carId\": 1, \"action\": \"Left this region\"", topic: "tawseel/drivers/\(region.id)}")
     }
     
     // MARK: - action
