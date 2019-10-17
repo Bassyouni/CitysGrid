@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     var mapView: GMSMapView!
     var regions = [Region]()
     var bag = DisposeBag()
+    var timer: Timer?
     
     var currentRegion: Region?
     
@@ -33,18 +34,18 @@ class ViewController: UIViewController {
     
     // MARK: - UI
     func configureUI() {
-    view.backgroundColor = .purple
-    let button = UIButton(frame: CGRect(x: view.frame.width - 100, y: view.frame.height - 100, width: 50, height: 50))
-    button.translatesAutoresizingMaskIntoConstraints = false
-    button.setTitle("again", for: .normal)
-    button.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
-    button.addTarget(self, action: #selector(setupRegions), for: .touchUpInside)
-    view.addSubview(button)
-    button.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-    button.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        setupMap()
+        view.backgroundColor = .purple
+        let button = UIButton(frame: CGRect(x: view.frame.width - 100, y: view.frame.height - 100, width: 50, height: 50))
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("again", for: .normal)
+        button.backgroundColor = UIColor.red.withAlphaComponent(0.5)
+        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        view.addSubview(button)
+        button.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        button.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
     
-    setupMap()
-}
+    }
     
     // MARK: - map
     func setupMap() {
@@ -136,7 +137,7 @@ class ViewController: UIViewController {
         }
         
         var index = 1
-        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (timer) in
+        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (timer) in
             guard index < driverPath.count else {
                 timer.invalidate()
                 return
@@ -189,6 +190,12 @@ class ViewController: UIViewController {
     func publishLeaveAction(region: Region)
     {
         MQTTManager.sharedConnection.publish(message: "{'carId': 1, 'action': 'Left this region'", topic: "tawseel/drivers/\(region.id)")
+    }
+    
+    // MARK: - action
+    @objc func buttonPressed() {
+        timer?.invalidate()
+        startOperation()
     }
         
     
