@@ -30,6 +30,65 @@ class BaseViewController: UIViewController {
     }
     
     func configureUI() {
+        view.backgroundColor = .purple
+        setupMap()
+    }
+    
+    func setupMap() {
+        let camera = GMSCameraPosition.camera(withLatitude: 25.123612, longitude: 55.179775, zoom: 12)
+        mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
+        view.addSubview(mapView)
+    }
+    
+    func putMarkersOnMap(from coordinates: [[Coordinate]]) {
+        for i in 0..<coordinates.count {
+            for j in 0..<coordinates[i].count {
+                let marker = GMSMarker(position: coordinates[i][j].coordinate2D)
+                marker.title = "\(i) \(j)"
+                marker.map = self.mapView
+            }
+        }
+    }
+    
+    func addRegionsPolygons(with grid: [[Coordinate]]) {
+        var polygonsPathArray = [GMSMutablePath]()
+        
+        for i in 0..<grid.count - 1
+        {
+            for j in 0..<(grid[i].count - 1)
+            {
+                let path = GMSMutablePath()
+                let firstPoint = grid[i][j]
+                let secondPoint = grid[i + 1][j]
+                let thirdPoint = grid[i + 1][j + 1]
+                let fourthPoint = grid[i][j + 1]
+                
+                path.add( firstPoint.coordinate2D )
+                path.add( secondPoint.coordinate2D )
+                path.add( thirdPoint.coordinate2D)
+                path.add( fourthPoint.coordinate2D )
+                
+                let edgeCoordinates = EdgeCoordinates([firstPoint, secondPoint, thirdPoint, fourthPoint])
+                regions.append(Region(id: j + i, edgeCoordinates: edgeCoordinates, neighbours: []))
+                polygonsPathArray.append(path)
+            }
+        }
+        
+        addNeighnours(rowCount: (grid.first?.count ?? 0) - 1 )
+        
+        
+        
+        for (i , path) in polygonsPathArray.enumerated()
+        {
+            let polygon = GMSPolygon(path: path)
+            polygon.fillColor = colors[i % colors.count].withAlphaComponent(0.2)
+            polygon.strokeColor = colors[i % colors.count]
+            polygon.strokeWidth = 2
+            polygon.map = mapView
+        }
+        
+        
+        //        putMarkersOnMap(from: [regions.map { $0.centerCoordinate }] )
         
     }
     

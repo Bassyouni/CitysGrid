@@ -17,7 +17,14 @@ class DriverViewController: BaseViewController {
     
     override func configureUI() {
         super.configureUI()
-        
+        let button = UIButton(frame: CGRect(x: view.frame.width - 100, y: view.frame.height - 100, width: 50, height: 50))
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("again", for: .normal)
+        button.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
+        button.addTarget(self, action: #selector(setupRegions), for: .touchUpInside)
+        view.addSubview(button)
+        button.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        button.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
     
     override func startOperation() {

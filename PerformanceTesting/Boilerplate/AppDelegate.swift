@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSPlacesClient.provideAPIKey(key)
         
         window = UIWindow()
-        window?.rootViewController = ViewController()
+        window?.rootViewController = BaseViewController()
         window?.makeKeyAndVisible()
         return true
     }

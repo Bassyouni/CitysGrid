@@ -12,6 +12,8 @@
 		0443B78F235C649700C00ED2 /* BaseViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0443B78E235C649700C00ED2 /* BaseViewController+Extension.swift */; };
 		0443B791235C651900C00ED2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0443B790235C651900C00ED2 /* Constants.swift */; };
 		0443B793235C654200C00ED2 /* DriverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0443B792235C654200C00ED2 /* DriverViewController.swift */; };
+		0443B795235C665B00C00ED2 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0443B794235C665B00C00ED2 /* Car.swift */; };
+		0443B797235C666A00C00ED2 /* CustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0443B796235C666A00C00ED2 /* CustomerViewController.swift */; };
 		04BE56CA2345F3390097161C /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BE56C92345F3390097161C /* Region.swift */; };
 		04BE56CD2345F3680097161C /* TreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BE56CC2345F3680097161C /* TreeNode.swift */; };
 		04BE56CF2345F6D20097161C /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BE56CE2345F6D20097161C /* Coordinate.swift */; };
@@ -50,6 +52,8 @@
 		0443B78E235C649700C00ED2 /* BaseViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseViewController+Extension.swift"; sourceTree = "<group>"; };
 		0443B790235C651900C00ED2 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0443B792235C654200C00ED2 /* DriverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverViewController.swift; sourceTree = "<group>"; };
+		0443B794235C665B00C00ED2 /* Car.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		0443B796235C666A00C00ED2 /* CustomerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewController.swift; sourceTree = "<group>"; };
 		04BE56C92345F3390097161C /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 		04BE56CC2345F3680097161C /* TreeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeNode.swift; sourceTree = "<group>"; };
 		04BE56CE2345F6D20097161C /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
@@ -127,6 +131,7 @@
 		0443B789235C643900C00ED2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0443B794235C665B00C00ED2 /* Car.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -184,6 +189,7 @@
 				0443B78C235C645700C00ED2 /* BaseViewController.swift */,
 				0443B78E235C649700C00ED2 /* BaseViewController+Extension.swift */,
 				0443B792235C654200C00ED2 /* DriverViewController.swift */,
+				0443B796235C666A00C00ED2 /* CustomerViewController.swift */,
 			);
 			path = PerformanceTesting;
 			sourceTree = "<group>";
@@ -489,10 +495,12 @@
 			files = (
 				04DE18652344B03B00D74FC4 /* Tree.swift in Sources */,
 				0443B78F235C649700C00ED2 /* BaseViewController+Extension.swift in Sources */,
+				0443B795235C665B00C00ED2 /* Car.swift in Sources */,
 				04BE56CD2345F3680097161C /* TreeNode.swift in Sources */,
 				04C7911F2354BCB1005AF7C4 /* EdgeCoordinates.swift in Sources */,
 				043318302355C3F3004754A7 /* MQTTWrapper.swift in Sources */,
 				0443B791235C651900C00ED2 /* Constants.swift in Sources */,
+				0443B797235C666A00C00ED2 /* CustomerViewController.swift in Sources */,
 				0443B793235C654200C00ED2 /* DriverViewController.swift in Sources */,
 				0443B78D235C645700C00ED2 /* BaseViewController.swift in Sources */,
 				04DE18362344AB0300D74FC4 /* AppDelegate.swift in Sources */,
