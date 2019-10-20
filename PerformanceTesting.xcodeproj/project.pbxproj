@@ -70,15 +70,21 @@
 		04DE18552344AB0B00D74FC4 /* PerformanceTestingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceTestingUITests.swift; sourceTree = "<group>"; };
 		04DE18572344AB0B00D74FC4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04DE18642344B03B00D74FC4 /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
+		1C84DB000C9D6B0807541023 /* Pods-PerformanceTesting.debug_customer.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerformanceTesting.debug_customer.xcconfig"; path = "Target Support Files/Pods-PerformanceTesting/Pods-PerformanceTesting.debug_customer.xcconfig"; sourceTree = "<group>"; };
+		48A52951358AEF3266538CFC /* Pods-PerformanceTestingTests.debug_driver.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerformanceTestingTests.debug_driver.xcconfig"; path = "Target Support Files/Pods-PerformanceTestingTests/Pods-PerformanceTestingTests.debug_driver.xcconfig"; sourceTree = "<group>"; };
 		5BC5DA9ADE29AF86BCCA886D /* Pods-PerformanceTesting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerformanceTesting.release.xcconfig"; path = "Target Support Files/Pods-PerformanceTesting/Pods-PerformanceTesting.release.xcconfig"; sourceTree = "<group>"; };
 		722F9FA27E03039D8AE94D50 /* Pods_PerformanceTestingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PerformanceTestingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81BEFAABC025C31F919FDA39 /* Pods-PerformanceTesting.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerformanceTesting.debug.xcconfig"; path = "Target Support Files/Pods-PerformanceTesting/Pods-PerformanceTesting.debug.xcconfig"; sourceTree = "<group>"; };
+		83E733C5B8FA3DAE0FF39636 /* Pods-PerformanceTesting.debug_driver.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerformanceTesting.debug_driver.xcconfig"; path = "Target Support Files/Pods-PerformanceTesting/Pods-PerformanceTesting.debug_driver.xcconfig"; sourceTree = "<group>"; };
 		8A6E2844CB5071AEF00A62B5 /* Pods-PerformanceTestingUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerformanceTestingUITests.release.xcconfig"; path = "Target Support Files/Pods-PerformanceTestingUITests/Pods-PerformanceTestingUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8C3E412210E19C071B9660FB /* Pods-PerformanceTestingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerformanceTestingTests.debug.xcconfig"; path = "Target Support Files/Pods-PerformanceTestingTests/Pods-PerformanceTestingTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8FC00ADB8299DBDC36E117A7 /* Pods-PerformanceTestingUITests.debug_driver.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerformanceTestingUITests.debug_driver.xcconfig"; path = "Target Support Files/Pods-PerformanceTestingUITests/Pods-PerformanceTestingUITests.debug_driver.xcconfig"; sourceTree = "<group>"; };
+		967844613936B588A3E1B208 /* Pods-PerformanceTestingUITests.debug_customer.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerformanceTestingUITests.debug_customer.xcconfig"; path = "Target Support Files/Pods-PerformanceTestingUITests/Pods-PerformanceTestingUITests.debug_customer.xcconfig"; sourceTree = "<group>"; };
 		97D5D141229256EFFB4E0735 /* Pods-PerformanceTestingUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerformanceTestingUITests.debug.xcconfig"; path = "Target Support Files/Pods-PerformanceTestingUITests/Pods-PerformanceTestingUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B60C61E3C51685528CBA9947 /* Pods_PerformanceTesting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PerformanceTesting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAA4DCC8A71EAB653466B546 /* Pods-PerformanceTestingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerformanceTestingTests.release.xcconfig"; path = "Target Support Files/Pods-PerformanceTestingTests/Pods-PerformanceTestingTests.release.xcconfig"; sourceTree = "<group>"; };
 		E01759125C51398A5C055743 /* Pods_PerformanceTestingUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PerformanceTestingUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE3592B36F513DC2EB5FF5F6 /* Pods-PerformanceTestingTests.debug_customer.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerformanceTestingTests.debug_customer.xcconfig"; path = "Target Support Files/Pods-PerformanceTestingTests/Pods-PerformanceTestingTests.debug_customer.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +227,12 @@
 				CAA4DCC8A71EAB653466B546 /* Pods-PerformanceTestingTests.release.xcconfig */,
 				97D5D141229256EFFB4E0735 /* Pods-PerformanceTestingUITests.debug.xcconfig */,
 				8A6E2844CB5071AEF00A62B5 /* Pods-PerformanceTestingUITests.release.xcconfig */,
+				1C84DB000C9D6B0807541023 /* Pods-PerformanceTesting.debug_customer.xcconfig */,
+				83E733C5B8FA3DAE0FF39636 /* Pods-PerformanceTesting.debug_driver.xcconfig */,
+				FE3592B36F513DC2EB5FF5F6 /* Pods-PerformanceTestingTests.debug_customer.xcconfig */,
+				48A52951358AEF3266538CFC /* Pods-PerformanceTestingTests.debug_driver.xcconfig */,
+				967844613936B588A3E1B208 /* Pods-PerformanceTestingUITests.debug_customer.xcconfig */,
+				8FC00ADB8299DBDC36E117A7 /* Pods-PerformanceTestingUITests.debug_driver.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -552,6 +564,253 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0443B7A6235C6C3700C00ED2 /* Debug_Driver */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				"SWIFT_ACTIVE_COMPILATION_CONDITIONS[arch=*]" = Driver;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug_Driver;
+		};
+		0443B7A7235C6C3700C00ED2 /* Debug_Driver */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 83E733C5B8FA3DAE0FF39636 /* Pods-PerformanceTesting.debug_driver.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C32PW3VGZG;
+				INFOPLIST_FILE = "$(SRCROOT)/PerformanceTesting/Boilerplate/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bassyouni.PerformanceTesting;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug_Driver;
+		};
+		0443B7A8235C6C3700C00ED2 /* Debug_Driver */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 48A52951358AEF3266538CFC /* Pods-PerformanceTestingTests.debug_driver.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C32PW3VGZG;
+				INFOPLIST_FILE = PerformanceTestingTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bassyouni.PerformanceTestingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PerformanceTesting.app/PerformanceTesting";
+			};
+			name = Debug_Driver;
+		};
+		0443B7A9235C6C3700C00ED2 /* Debug_Driver */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8FC00ADB8299DBDC36E117A7 /* Pods-PerformanceTestingUITests.debug_driver.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C32PW3VGZG;
+				INFOPLIST_FILE = PerformanceTestingUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bassyouni.PerformanceTestingUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PerformanceTesting;
+			};
+			name = Debug_Driver;
+		};
+		0443B7AA235C6C4200C00ED2 /* Debug_Customer */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug_Customer;
+		};
+		0443B7AB235C6C4200C00ED2 /* Debug_Customer */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C84DB000C9D6B0807541023 /* Pods-PerformanceTesting.debug_customer.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C32PW3VGZG;
+				INFOPLIST_FILE = "$(SRCROOT)/PerformanceTesting/Boilerplate/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bassyouni.PerformanceTesting;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug_Customer;
+		};
+		0443B7AC235C6C4200C00ED2 /* Debug_Customer */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE3592B36F513DC2EB5FF5F6 /* Pods-PerformanceTestingTests.debug_customer.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C32PW3VGZG;
+				INFOPLIST_FILE = PerformanceTestingTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bassyouni.PerformanceTestingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PerformanceTesting.app/PerformanceTesting";
+			};
+			name = Debug_Customer;
+		};
+		0443B7AD235C6C4200C00ED2 /* Debug_Customer */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 967844613936B588A3E1B208 /* Pods-PerformanceTestingUITests.debug_customer.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C32PW3VGZG;
+				INFOPLIST_FILE = PerformanceTestingUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bassyouni.PerformanceTestingUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PerformanceTesting;
+			};
+			name = Debug_Customer;
+		};
 		04DE18582344AB0B00D74FC4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -799,6 +1058,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				04DE18582344AB0B00D74FC4 /* Debug */,
+				0443B7AA235C6C4200C00ED2 /* Debug_Customer */,
+				0443B7A6235C6C3700C00ED2 /* Debug_Driver */,
 				04DE18592344AB0B00D74FC4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -808,6 +1069,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				04DE185B2344AB0B00D74FC4 /* Debug */,
+				0443B7AB235C6C4200C00ED2 /* Debug_Customer */,
+				0443B7A7235C6C3700C00ED2 /* Debug_Driver */,
 				04DE185C2344AB0B00D74FC4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -817,6 +1080,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				04DE185E2344AB0B00D74FC4 /* Debug */,
+				0443B7AC235C6C4200C00ED2 /* Debug_Customer */,
+				0443B7A8235C6C3700C00ED2 /* Debug_Driver */,
 				04DE185F2344AB0B00D74FC4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -826,6 +1091,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				04DE18612344AB0B00D74FC4 /* Debug */,
+				0443B7AD235C6C4200C00ED2 /* Debug_Customer */,
+				0443B7A9235C6C3700C00ED2 /* Debug_Driver */,
 				04DE18622344AB0B00D74FC4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;

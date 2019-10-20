@@ -10,6 +10,12 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 
+#if Driver
+let isDriverApp = true
+#else
+let isDriverApp = false
+#endif
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -23,8 +29,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSPlacesClient.provideAPIKey(key)
         
         window = UIWindow()
-        window?.rootViewController = BaseViewController()
+        
+        
+        
+        if isDriverApp {
+            window?.rootViewController = DriverViewController()
+        }
+        else {
+            window?.rootViewController = CustomerViewController()
+        }
+        
         window?.makeKeyAndVisible()
+        
         return true
     }
 }
