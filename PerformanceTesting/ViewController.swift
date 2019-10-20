@@ -137,14 +137,14 @@ class ViewController: UIViewController {
         }
         
         var index = 1
-        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (timer) in
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
             guard index < driverPath.count else {
                 timer.invalidate()
                 return
             }
             
             CATransaction.begin()
-            CATransaction.setAnimationDuration(0.1)
+            CATransaction.setAnimationDuration(1)
             marker.position = driverPath[index].coordinate2D
             self.mapView.animate(toLocation:  driverPath[index].coordinate2D)
             CATransaction.commit()
