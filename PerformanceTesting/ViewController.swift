@@ -195,6 +195,7 @@ class ViewController: UIViewController {
     // MARK: - action
     @objc func buttonPressed() {
         timer?.invalidate()
+        currentRegion = nil
         startOperation()
     }
         
