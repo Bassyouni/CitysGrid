@@ -189,7 +189,7 @@ class ViewController: UIViewController {
     
     func publishLeaveAction(region: Region)
     {
-        MQTTManager.sharedConnection.publish(message: "{\"carId\": 1, \"action\": \"Left this region\"", topic: "tawseel/drivers/\(region.id)}")
+        MQTTManager.sharedConnection.publish(message: "{\"carId\": 1, \"action\": \"Left this region\"}", topic: "tawseel/drivers/\(region.id)")
     }
     
     // MARK: - action
