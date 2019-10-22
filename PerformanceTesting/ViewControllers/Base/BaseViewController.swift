@@ -24,12 +24,18 @@ class BaseViewController: UIViewController {
     
         configureUI()
         if !(self is RegionShowerViewController) {
-            let coordinates = [Coordinate(latitude: 24.604503, longitude: 54.844086),
+            let aboDuhbiCoordinates = [Coordinate(latitude: 24.604503, longitude: 54.844086),
                                Coordinate(latitude: 24.138950, longitude: 54.816490),
                                Coordinate(latitude: 24.173921, longitude: 54.256488),
                                Coordinate(latitude: 24.624247, longitude: 54.285306)]
-            setupGridWithEdgeCoordinates(coordinates)
-            fitMapToCoordinates(coordinates)
+            
+            let dubaiCoordinates = [Coordinate(latitude: 25.36308, longitude: 55.288780)
+                                    ,Coordinate(latitude: 25.234892, longitude: 55.562463)
+                                    ,Coordinate(latitude: 24.953261, longitude: 54.812796)
+                                    ,Coordinate(latitude: 24.794440, longitude: 55.077634)]
+            
+            setupGridWithEdgeCoordinates(dubaiCoordinates)
+            fitMapToCoordinates(dubaiCoordinates)
             addShowRegionButton()
         }
         
