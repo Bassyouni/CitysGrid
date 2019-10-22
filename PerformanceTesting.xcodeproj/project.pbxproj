@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		043318302355C3F3004754A7 /* MQTTWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0433182F2355C3F3004754A7 /* MQTTWrapper.swift */; };
+		043EADD6235F30F10051C4F4 /* AddCoordinatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EADD5235F30F10051C4F4 /* AddCoordinatesViewController.swift */; };
+		043EADD8235F317C0051C4F4 /* Extensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EADD7235F317C0051C4F4 /* Extensions+UIView.swift */; };
+		043EADDA235F39E90051C4F4 /* ShakingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EADD9235F39E90051C4F4 /* ShakingTextField.swift */; };
+		043EADDE235F3E9A0051C4F4 /* RegionShowerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EADDD235F3E9A0051C4F4 /* RegionShowerViewController.swift */; };
 		0443B78D235C645700C00ED2 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0443B78C235C645700C00ED2 /* BaseViewController.swift */; };
 		0443B78F235C649700C00ED2 /* BaseViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0443B78E235C649700C00ED2 /* BaseViewController+Extension.swift */; };
 		0443B791235C651900C00ED2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0443B790235C651900C00ED2 /* Constants.swift */; };
@@ -48,6 +52,10 @@
 
 /* Begin PBXFileReference section */
 		0433182F2355C3F3004754A7 /* MQTTWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTWrapper.swift; sourceTree = "<group>"; };
+		043EADD5235F30F10051C4F4 /* AddCoordinatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCoordinatesViewController.swift; sourceTree = "<group>"; };
+		043EADD7235F317C0051C4F4 /* Extensions+UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extensions+UIView.swift"; sourceTree = "<group>"; };
+		043EADD9235F39E90051C4F4 /* ShakingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShakingTextField.swift; sourceTree = "<group>"; };
+		043EADDD235F3E9A0051C4F4 /* RegionShowerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionShowerViewController.swift; sourceTree = "<group>"; };
 		0443B78C235C645700C00ED2 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		0443B78E235C649700C00ED2 /* BaseViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseViewController+Extension.swift"; sourceTree = "<group>"; };
 		0443B790235C651900C00ED2 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -134,6 +142,60 @@
 			path = Boilerplate;
 			sourceTree = "<group>";
 		};
+		043EADDF235F46280051C4F4 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				043EADE3235F46610051C4F4 /* Customer */,
+				043EADE2235F465C0051C4F4 /* Driver */,
+				043EADE1235F46510051C4F4 /* Base */,
+				043EADE0235F46400051C4F4 /* RegionShower */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		043EADE0235F46400051C4F4 /* RegionShower */ = {
+			isa = PBXGroup;
+			children = (
+				043EADDD235F3E9A0051C4F4 /* RegionShowerViewController.swift */,
+				043EADD5235F30F10051C4F4 /* AddCoordinatesViewController.swift */,
+			);
+			path = RegionShower;
+			sourceTree = "<group>";
+		};
+		043EADE1235F46510051C4F4 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				0443B78C235C645700C00ED2 /* BaseViewController.swift */,
+				0443B78E235C649700C00ED2 /* BaseViewController+Extension.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		043EADE2235F465C0051C4F4 /* Driver */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Driver;
+			sourceTree = "<group>";
+		};
+		043EADE3235F46610051C4F4 /* Customer */ = {
+			isa = PBXGroup;
+			children = (
+				0443B792235C654200C00ED2 /* DriverViewController.swift */,
+				0443B796235C666A00C00ED2 /* CustomerViewController.swift */,
+			);
+			path = Customer;
+			sourceTree = "<group>";
+		};
+		043EADE4235F46A80051C4F4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				043EADD7235F317C0051C4F4 /* Extensions+UIView.swift */,
+				043EADD9235F39E90051C4F4 /* ShakingTextField.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		0443B789235C643900C00ED2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -153,9 +215,9 @@
 		04BE56C82345F31E0097161C /* Regions */ = {
 			isa = PBXGroup;
 			children = (
-				04DE18642344B03B00D74FC4 /* Tree.swift */,
 				04BE56C92345F3390097161C /* Region.swift */,
 				04BE56CC2345F3680097161C /* TreeNode.swift */,
+				04DE18642344B03B00D74FC4 /* Tree.swift */,
 				04BE56CE2345F6D20097161C /* Coordinate.swift */,
 				04C7911E2354BCB1005AF7C4 /* EdgeCoordinates.swift */,
 			);
@@ -187,15 +249,13 @@
 		04DE18342344AB0300D74FC4 /* PerformanceTesting */ = {
 			isa = PBXGroup;
 			children = (
+				043EADE4235F46A80051C4F4 /* Views */,
 				0443B78A235C644400C00ED2 /* Constants */,
 				0443B789235C643900C00ED2 /* Models */,
 				0433182E2355C3BD004754A7 /* Boilerplate */,
 				0433182D2355C3B7004754A7 /* MQTT */,
 				04BE56C82345F31E0097161C /* Regions */,
-				0443B78C235C645700C00ED2 /* BaseViewController.swift */,
-				0443B78E235C649700C00ED2 /* BaseViewController+Extension.swift */,
-				0443B792235C654200C00ED2 /* DriverViewController.swift */,
-				0443B796235C666A00C00ED2 /* CustomerViewController.swift */,
+				043EADDF235F46280051C4F4 /* ViewControllers */,
 			);
 			path = PerformanceTesting;
 			sourceTree = "<group>";
@@ -505,6 +565,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				043EADD6235F30F10051C4F4 /* AddCoordinatesViewController.swift in Sources */,
 				04DE18652344B03B00D74FC4 /* Tree.swift in Sources */,
 				0443B78F235C649700C00ED2 /* BaseViewController+Extension.swift in Sources */,
 				0443B795235C665B00C00ED2 /* Car.swift in Sources */,
@@ -518,6 +579,9 @@
 				04DE18362344AB0300D74FC4 /* AppDelegate.swift in Sources */,
 				04BE56CA2345F3390097161C /* Region.swift in Sources */,
 				04BE56CF2345F6D20097161C /* Coordinate.swift in Sources */,
+				043EADD8235F317C0051C4F4 /* Extensions+UIView.swift in Sources */,
+				043EADDE235F3E9A0051C4F4 /* RegionShowerViewController.swift in Sources */,
+				043EADDA235F39E90051C4F4 /* ShakingTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

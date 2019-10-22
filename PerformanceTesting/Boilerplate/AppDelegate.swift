@@ -97,15 +97,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey(key)
         GMSPlacesClient.provideAPIKey(key)
         
+        let attributes = [NSAttributedString.Key.font:  UIFont(name: "Helvetica-Bold", size: 0.1)!, NSAttributedString.Key.foregroundColor: UIColor.clear]
+        
+        
+        UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: .normal)
+        UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: .highlighted)
+        
         window = UIWindow()
         
         
-        
         if isDriverApp {
-            window?.rootViewController = DriverViewController()
+            window?.rootViewController = UINavigationController(rootViewController: DriverViewController())
         }
         else {
-            window?.rootViewController = CustomerViewController()
+            window?.rootViewController = UINavigationController(rootViewController: CustomerViewController())
         }
         
         window?.makeKeyAndVisible()

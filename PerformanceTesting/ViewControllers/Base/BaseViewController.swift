@@ -19,22 +19,44 @@ class BaseViewController: UIViewController {
     
     let colors: [UIColor] = [UIColor.red, .blue, .magenta, .black, .purple, .cyan, .brown, .darkGray, .orange]
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        configureUI()        
-        setupGridWithEdgeCoordinates([Coordinate(latitude: 24.604503, longitude: 54.844086),
-                                      Coordinate(latitude: 24.138950, longitude: 54.816490),
-                                      Coordinate(latitude: 24.173921, longitude: 54.256488),
-                                      Coordinate(latitude: 24.624247, longitude: 54.285306)])
+        configureUI()
+        if !(self is RegionShowerViewController) {
+            let coordinates = [Coordinate(latitude: 24.604503, longitude: 54.844086),
+                               Coordinate(latitude: 24.138950, longitude: 54.816490),
+                               Coordinate(latitude: 24.173921, longitude: 54.256488),
+                               Coordinate(latitude: 24.624247, longitude: 54.285306)]
+            setupGridWithEdgeCoordinates(coordinates)
+            fitMapToCoordinates(coordinates)
+            addShowRegionButton()
+        }
+        
+        
         setupRegions()
         setupMQTT()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if !(self is RegionShowerViewController) {
+            navigationController?.setNavigationBarHidden(true, animated: animated)
+        }
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if !(self is RegionShowerViewController) {
+            navigationController?.setNavigationBarHidden(false, animated: animated)
+        }
     }
     
     func configureUI() {
         view.backgroundColor = .purple
         setupMap()
+        
     }
     
     func setupMap() {
@@ -112,6 +134,36 @@ class BaseViewController: UIViewController {
     
     func startOperation() {
         
+    }
+    
+    func fitMapToCoordinates(_ coordinates: [Coordinate]) {
+        let firstLocation = coordinates.first!
+        
+        var bounds = GMSCoordinateBounds(coordinate:firstLocation.coordinate2D, coordinate: firstLocation.coordinate2D)
+        
+        for coordinate in coordinates {
+            bounds = bounds.includingCoordinate(coordinate.coordinate2D)
+        }
+        
+        let update = GMSCameraUpdate.fit(bounds, withPadding: CGFloat(15))
+        self.mapView.animate(with: update)
+    }
+    
+    func addShowRegionButton() {
+        let button = UIButton(frame: .zero)
+        button.setImage(#imageLiteral(resourceName: "add"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "add"), for: .selected)
+        button.backgroundColor = .init(red: 66/255, green: 139/255, blue: 199/255, alpha: 1)
+        
+        view.addSubview(button)
+        button.anchor(top: nil, leading: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 25, right: 25), size: .init(width: 50, height: 50))
+        button.layer.cornerRadius = 25
+        
+        button.addTarget(self, action: #selector(showRegionButtonPressed), for: .touchUpInside)
+    }
+    
+    @objc func showRegionButtonPressed() {
+        navigationController?.pushViewController(AddCoordinatesViewController(), animated: true)
     }
     
     
