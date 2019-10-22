@@ -9,21 +9,91 @@
 import Foundation
 
 extension BaseViewController {
-    func setupGrid() {
+    
+    func setupGridWithEdgeCoordinates(_ coordinates: [Coordinate]) {
+        guard coordinates.count == 4 else {
+            print("edges must be only 4 coordinates")
+            return
+        }
         
+        let sortedLlatitudeArray = coordinates.sorted(by: { a,b in a.latitude < b.latitude })
+        
+        let topLatitude = [sortedLlatitudeArray[2], sortedLlatitudeArray[3]].sorted(by: { a,b in a.longitude < b.longitude })
+        let bottomLatitude = [sortedLlatitudeArray[0], sortedLlatitudeArray[1]].sorted(by: { a,b in a.longitude < b.longitude })
+        
+        
+        let topLeft = topLatitude[0]
+        let topRight = topLatitude[1]
+        
+        let bottomLeft = bottomLatitude[0]
+        let bottomRight = bottomLatitude[1]
+        
+        setupGrid(topLeft: topLeft, topRight: topRight, bottomLeft: bottomLeft, bottomRight: bottomRight)
+    }
+    
+    func setupGrid() {
         let topLeft = Coordinate(latitude: 25.36308, longitude: 55.288780)
         let topRight = Coordinate(latitude: 25.234892, longitude: 55.562463)
         let bottomLeft = Coordinate(latitude: 24.953261, longitude: 54.812796)
         let bottomRight = Coordinate(latitude: 24.794440, longitude: 55.077634)
+        setupGrid(topLeft: topLeft, topRight: topRight, bottomLeft: bottomLeft, bottomRight: bottomRight)
+    }
+    
+    fileprivate func setupGrid(topLeft: Coordinate, topRight: Coordinate, bottomLeft: Coordinate, bottomRight: Coordinate) {
         
-        var arrayLength: [Coordinate] = [bottomRight]
+        var bottomLengthCoordinate: Coordinate!
+        var topLengthCoordinate: Coordinate!
+        var startingWidthCoordinate: Coordinate!
+        var endingWidthCoordinate: Coordinate!
+        
+        if bottomLeft.location.distance(from: topLeft.location) >= bottomRight.location.distance(from: topRight.location)
+        {
+            topLengthCoordinate = topLeft
+            bottomLengthCoordinate = bottomLeft
+        }
+        else
+        {
+            topLengthCoordinate = topRight
+            bottomLengthCoordinate = bottomRight
+        }
+        
+        if bottomLeft.location.distance(from: bottomRight.location) >= topLeft.location.distance(from: topRight.location)
+        {
+            if bottomLengthCoordinate == bottomLeft
+            {
+                startingWidthCoordinate = bottomLeft
+                endingWidthCoordinate = bottomRight
+            }
+            else
+            {
+                startingWidthCoordinate = bottomRight
+                endingWidthCoordinate = bottomLeft
+            }
+            
+        }
+        else
+        {
+            if topLengthCoordinate == topRight
+            {
+                startingWidthCoordinate = topRight
+                endingWidthCoordinate = topLeft
+            }
+            else
+            {
+                startingWidthCoordinate = topLeft
+                endingWidthCoordinate = topRight
+            }
+            
+        }
+        
+        var arrayLength: [Coordinate] = [bottomLengthCoordinate]
         var arrayWidth: [Coordinate] = []
         
-        let xLengthDif = abs(topRight.latitude - bottomRight.latitude)
-        let yLengthDif = abs(topRight.longitude - bottomRight.longitude)
+        let xLengthDif = abs(topLengthCoordinate.latitude - bottomLengthCoordinate.latitude)
+        let yLengthDif = abs(topLengthCoordinate.longitude - bottomLengthCoordinate.longitude)
         
-        let xWitdhDif = abs(bottomLeft.latitude - bottomRight.latitude)
-        let yWitdhDif = abs(bottomLeft.longitude - bottomRight.longitude)
+        let xWitdhDif = abs(startingWidthCoordinate.latitude - endingWidthCoordinate.latitude)
+        let yWitdhDif = abs(startingWidthCoordinate.longitude - endingWidthCoordinate.longitude)
         
         
         print("topLeft to topRight 'width': ",topLeft.location.distance(from: topRight.location) / 1000.0, " KM \n")
@@ -40,16 +110,16 @@ extension BaseViewController {
             var newLengthLat: Double!
             var newLengthLong: Double!
             
-            if bottomRight.latitude < topRight.latitude {
-                newLengthLat = bottomRight.latitude + ( xLengthDif * step )
+            if bottomLengthCoordinate.latitude < topLengthCoordinate.latitude {
+                newLengthLat = bottomLengthCoordinate.latitude + ( xLengthDif * step )
             } else {
-                newLengthLat = bottomRight.latitude - ( xLengthDif * step )
+                newLengthLat = bottomLengthCoordinate.latitude - ( xLengthDif * step )
             }
             
-            if bottomRight.longitude < topRight.longitude {
-                newLengthLong = bottomRight.longitude + (yLengthDif * step )
+            if bottomLengthCoordinate.longitude < topLengthCoordinate.longitude {
+                newLengthLong = bottomLengthCoordinate.longitude + (yLengthDif * step )
             } else {
-                newLengthLong = bottomRight.longitude - (yLengthDif * step )
+                newLengthLong = bottomLengthCoordinate.longitude - (yLengthDif * step )
             }
             
             arrayLength.append(Coordinate(latitude: newLengthLat, longitude: newLengthLong))
@@ -57,23 +127,23 @@ extension BaseViewController {
             var newWidthLat: Double!
             var newWidthLong: Double!
             
-            if bottomRight.latitude < bottomLeft.latitude {
-                newWidthLat = bottomRight.latitude + ( xWitdhDif * step )
+            if startingWidthCoordinate.latitude < endingWidthCoordinate.latitude {
+                newWidthLat = startingWidthCoordinate.latitude + ( xWitdhDif * step )
             } else {
-                newWidthLat = bottomRight.latitude - ( xWitdhDif * step )
+                newWidthLat = startingWidthCoordinate.latitude - ( xWitdhDif * step )
             }
             
-            if bottomRight.longitude < bottomLeft.longitude {
-                newWidthLong = bottomRight.longitude + (yWitdhDif * step )
+            if startingWidthCoordinate.longitude < endingWidthCoordinate.longitude {
+                newWidthLong = startingWidthCoordinate.longitude + (yWitdhDif * step )
             } else {
-                newWidthLong = bottomRight.longitude - (yWitdhDif * step )
+                newWidthLong = startingWidthCoordinate.longitude - (yWitdhDif * step )
             }
             
             arrayWidth.append(Coordinate(latitude: newWidthLat, longitude: newWidthLong))
         }
         
-        arrayLength.append(topRight)
-        arrayWidth.append(bottomLeft)
+        arrayLength.append(topLengthCoordinate)
+        arrayWidth.append(endingWidthCoordinate)
         
         let gridArray = getGridFormArrays(length: arrayLength, width: arrayWidth)
         

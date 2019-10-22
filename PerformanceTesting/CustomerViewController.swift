@@ -13,7 +13,8 @@ import RxSwift
 class CustomerViewController: BaseViewController {
     
     var driverMarkers = [GMSMarker]()
-    let myCoordinate = Coordinate(latitude: 25.123612, longitude: 55.179775)
+    let myCoordinate = Coordinate(latitude: 25.02553, longitude: 55.179775)
+    var lastLocationDate: Date?
     
     
     override func startOperation() {
@@ -71,18 +72,35 @@ class CustomerViewController: BaseViewController {
         if let index = index
         {
             CATransaction.begin()
-            CATransaction.setAnimationDuration(0.1)
+            CATransaction.setAnimationDuration(Date().timeIntervalSince(lastLocationDate!))
             driverMarkers[index].position = coordinate2D
+            self.mapView.animate(toLocation: coordinate2D)
             CATransaction.commit()
+            lastLocationDate = Date()
         }
         else
         {
+            
             let newMarker = GMSMarker(position: coordinate2D)
             newMarker.title = "\(carId)"
             newMarker.map = mapView
-            driverMarkers.append(newMarker)
             newMarker.appearAnimation = .pop
+            newMarker.icon = imageWithImage(image: UIImage(named: "tawseelMarker")!, scaledToSize: CGSize(width: 60 , height: 60))
+            self.mapView.animate(toLocation: coordinate2D)
+            driverMarkers.append(newMarker)
+            lastLocationDate = Date()
         }
+    }
+    
+    
+    // MARK: - helpers
+    func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
+        //image.draw(in: CGRectMake(0, 0, newSize.width, newSize.height))
+        image.draw(in: CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: newSize.width, height: newSize.height))  )
+        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return newImage
     }
     
 }

@@ -436,7 +436,7 @@ let driverPath: [Coordinate] = [/*Coordinate(latitude: 25.20522, longitude: 55.2
                                 Coordinate(latitude: 25.1316, longitude: 55.19001),
                                 Coordinate(latitude: 25.13224, longitude: 55.18908),
                                 Coordinate(latitude: 25.13236, longitude: 55.18893),
-                                Coordinate(latitude: 25.13291, longitude: 55.18812),*/
+                                Coordinate(latitude: 25.13291, longitude: 55.18812),
                                 Coordinate(latitude: 25.13281, longitude: 55.18809),
                                 Coordinate(latitude: 25.13052, longitude: 55.19132),
                                 Coordinate(latitude: 25.13031, longitude: 55.19141),
@@ -808,7 +808,7 @@ let driverPath: [Coordinate] = [/*Coordinate(latitude: 25.20522, longitude: 55.2
                                 Coordinate(latitude: 25.02027, longitude: 55.10034),
                                 Coordinate(latitude: 25.02047, longitude: 55.09961),
                                 Coordinate(latitude: 25.02054, longitude: 55.09871),
-                                Coordinate(latitude: 25.02053, longitude: 55.09846),
+                                Coordinate(latitude: 25.02053, longitude: 55.09846),*/
                                 Coordinate(latitude: 25.02045, longitude: 55.09801),
                                 Coordinate(latitude: 25.02035, longitude: 55.09763),
                                 Coordinate(latitude: 25.02015, longitude: 55.09708),

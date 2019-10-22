@@ -21,7 +21,7 @@ class DriverViewController: BaseViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("again", for: .normal)
         button.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
-        button.addTarget(self, action: #selector(setupRegions), for: .touchUpInside)
+        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         view.addSubview(button)
         button.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         button.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
@@ -41,17 +41,17 @@ class DriverViewController: BaseViewController {
         }
         
         var index = 1
-        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (timer) in
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
             guard index < driverPath.count else {
                 timer.invalidate()
                 return
             }
             
-            CATransaction.begin()
-            CATransaction.setAnimationDuration(0.1)
+//            CATransaction.begin()
+//            CATransaction.setAnimationDuration(1)
             marker.position = driverPath[index].coordinate2D
             self.mapView.animate(toLocation:  driverPath[index].coordinate2D)
-            CATransaction.commit()
+//            CATransaction.commit()
             
             
             self.checkRegionAndPublish(with: driverPath[index])

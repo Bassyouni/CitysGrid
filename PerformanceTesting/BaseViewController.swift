@@ -22,9 +22,12 @@ class BaseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        configureUI()
-        setupGrid()
+    
+        configureUI()        
+        setupGridWithEdgeCoordinates([Coordinate(latitude: 24.604503, longitude: 54.844086),
+                                      Coordinate(latitude: 24.138950, longitude: 54.816490),
+                                      Coordinate(latitude: 24.173921, longitude: 54.256488),
+                                      Coordinate(latitude: 24.624247, longitude: 54.285306)])
         setupRegions()
         setupMQTT()
     }
@@ -35,7 +38,7 @@ class BaseViewController: UIViewController {
     }
     
     func setupMap() {
-        let camera = GMSCameraPosition.camera(withLatitude: 25.123612, longitude: 55.179775, zoom: 12)
+        let camera = GMSCameraPosition.camera(withLatitude: 24.96334, longitude: 55.477316, zoom: 12)
         mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
         view.addSubview(mapView)
     }
