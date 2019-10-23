@@ -79,24 +79,38 @@ class AddCoordinatesViewController: UIViewController {
         var rowArray = [Double]()
         var hasError: Bool = false
         
+        let showError: (_ textField: ShakingTextField) -> () = { textField in
+            textField.shake()
+            hasError = true
+        }
+        
         textFields.forEach { (textField) in
             if let text = textField.text, let number = Double(text)
             {
                 if rowArray.count == 0
                 {
                     rowArray.append(number)
+                    
+                    if abs(number) > 90
+                    {
+                        showError(textField)
+                    }
                 }
                 else
                 {
                     rowArray.append(number)
                     coordinatesMatrix.append(rowArray)
                     rowArray.removeAll()
+                    
+                    if abs(number) > 180
+                    {
+                        showError(textField)
+                    }
                 }
             }
             else
             {
-                textField.shake()
-                hasError = true
+                showError(textField)
             }
         }
         

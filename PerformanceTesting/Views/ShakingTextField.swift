@@ -8,13 +8,25 @@
 
 import UIKit
 
+enum CoordinateType: String {
+    case latitude = "Latitude"
+    case longitude = "Longitude"
+}
+
 class ShakingTextField: UITextField {
+    
+    var coordinateType:CoordinateType = .latitude
     
     init(placeholder: String) {
         super.init(frame: .zero)
         self.placeholder = placeholder
         borderStyle = .roundedRect
         addTarget(self, action: #selector(textChanged(_:)), for: .editingChanged)
+        
+        if let type = CoordinateType(rawValue: placeholder.components(separatedBy: " ").first ?? "")
+        {
+            coordinateType = type
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -33,9 +45,32 @@ class ShakingTextField: UITextField {
     }
     
     @objc func textChanged(_ textField: UITextField) {
-        if let text = textField.text, let _ = Double(text)
+    
+        
+        if let text = textField.text, let number = Double(text)
         {
-            textField.textColor = .black
+            switch coordinateType {
+
+            case .latitude:
+                if abs(number) <= 90
+                {
+                    textField.textColor = .black
+                }
+                else
+                {
+                    textField.textColor = .red
+                }
+                
+            case .longitude:
+                if abs(number) <= 180
+                {
+                    textField.textColor = .black
+                }
+                else
+                {
+                    textField.textColor = .red
+                }
+            }
         }
         else
         {
