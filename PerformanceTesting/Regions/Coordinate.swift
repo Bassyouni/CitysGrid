@@ -24,7 +24,19 @@ struct Coordinate: Equatable {
     var coordinate2D: CLLocationCoordinate2D {
         return location.coordinate
     }
+}
+
+extension Coordinate: Encodable {
+    enum CodingKeys: String, CodingKey {
+        case latitude
+        case longitude
+    }
     
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(latitude, forKey: .latitude)
+        try container.encode(longitude, forKey: .longitude)
+    }
 }
     
 

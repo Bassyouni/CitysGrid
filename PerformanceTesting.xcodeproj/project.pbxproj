@@ -18,6 +18,8 @@
 		0443B795235C665B00C00ED2 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0443B794235C665B00C00ED2 /* Car.swift */; };
 		0443B797235C666A00C00ED2 /* CustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0443B796235C666A00C00ED2 /* CustomerViewController.swift */; };
 		04549E392365B82A00BB4F30 /* RegionsCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04549E382365B82A00BB4F30 /* RegionsCreator.swift */; };
+		04549E3C2365DF2C00BB4F30 /* FileSavingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04549E3B2365DF2C00BB4F30 /* FileSavingManager.swift */; };
+		04549E3F2365E80200BB4F30 /* Extensions+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04549E3E2365E80200BB4F30 /* Extensions+Array.swift */; };
 		04BE56CA2345F3390097161C /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BE56C92345F3390097161C /* Region.swift */; };
 		04BE56CD2345F3680097161C /* TreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BE56CC2345F3680097161C /* TreeNode.swift */; };
 		04BE56CF2345F6D20097161C /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BE56CE2345F6D20097161C /* Coordinate.swift */; };
@@ -62,6 +64,8 @@
 		0443B794235C665B00C00ED2 /* Car.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		0443B796235C666A00C00ED2 /* CustomerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewController.swift; sourceTree = "<group>"; };
 		04549E382365B82A00BB4F30 /* RegionsCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionsCreator.swift; sourceTree = "<group>"; };
+		04549E3B2365DF2C00BB4F30 /* FileSavingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSavingManager.swift; sourceTree = "<group>"; };
+		04549E3E2365E80200BB4F30 /* Extensions+Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+Array.swift"; sourceTree = "<group>"; };
 		04BE56C92345F3390097161C /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 		04BE56CC2345F3680097161C /* TreeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeNode.swift; sourceTree = "<group>"; };
 		04BE56CE2345F6D20097161C /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
@@ -189,7 +193,6 @@
 		043EADE4235F46A80051C4F4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				043EADD7235F317C0051C4F4 /* Extensions+UIView.swift */,
 				043EADD9235F39E90051C4F4 /* ShakingTextField.swift */,
 			);
 			path = Views;
@@ -209,6 +212,23 @@
 				0443B790235C651900C00ED2 /* Constants.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		04549E3A2365DF1400BB4F30 /* FileManager */ = {
+			isa = PBXGroup;
+			children = (
+				04549E3B2365DF2C00BB4F30 /* FileSavingManager.swift */,
+			);
+			path = FileManager;
+			sourceTree = "<group>";
+		};
+		04549E3D2365E7EC00BB4F30 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				043EADD7235F317C0051C4F4 /* Extensions+UIView.swift */,
+				04549E3E2365E80200BB4F30 /* Extensions+Array.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		04BE56C82345F31E0097161C /* Regions */ = {
@@ -249,6 +269,8 @@
 		04DE18342344AB0300D74FC4 /* PerformanceTesting */ = {
 			isa = PBXGroup;
 			children = (
+				04549E3D2365E7EC00BB4F30 /* Extensions */,
+				04549E3A2365DF1400BB4F30 /* FileManager */,
 				043EADE4235F46A80051C4F4 /* Views */,
 				0443B78A235C644400C00ED2 /* Constants */,
 				0443B789235C643900C00ED2 /* Models */,
@@ -565,7 +587,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04549E3F2365E80200BB4F30 /* Extensions+Array.swift in Sources */,
 				043EADD6235F30F10051C4F4 /* AddCoordinatesViewController.swift in Sources */,
+				04549E3C2365DF2C00BB4F30 /* FileSavingManager.swift in Sources */,
 				04DE18652344B03B00D74FC4 /* Tree.swift in Sources */,
 				0443B795235C665B00C00ED2 /* Car.swift in Sources */,
 				04BE56CD2345F3680097161C /* TreeNode.swift in Sources */,

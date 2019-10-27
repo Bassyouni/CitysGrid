@@ -14,6 +14,7 @@ class Region {
     let id: Int
     let edgeCoordinates: EdgeCoordinates
     var neighbours: [Region]
+    var indexAtArray: Int?
     
     
     // MARK: - init
@@ -94,4 +95,23 @@ extension Region: Comparable {
     }
 }
 
-
+extension Region: Encodable {
+    enum CodingKeys: String, CodingKey {
+        case id
+        case edgeCoordinates
+        case neighbours
+        case centerPoint
+        case distanceFromOrigin
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(edgeCoordinates, forKey: .edgeCoordinates)
+        try container.encode(centerCoordinate, forKey: .centerPoint)
+        try container.encode(distanceFromOrigin, forKey: .distanceFromOrigin)
+        
+        let indexs = neighbours.compactMap { $0.indexAtArray }
+        try container.encode(indexs, forKey: .neighbours)
+    }
+}

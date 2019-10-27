@@ -47,6 +47,12 @@ class BaseViewController: UIViewController {
         
         setupRegionsTree()
         setupMQTT()
+        
+        SaveRegionToFile()
+    }
+    
+    func SaveRegionToFile() {
+        FileSavingManager.save(jsony: regions, toFileName: "DubaiRegion")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -119,7 +125,10 @@ class BaseViewController: UIViewController {
     @objc func setupRegionsTree() {
         
         tree = IntervalTree()
-        regions.sort()
+        
+        // Must use sortRegions rather than of sort()
+        // to add the indexs of neighbours in each region object
+        regions.sortRegions()
         
         tree.constructTreeWith(regions: regions)
         
