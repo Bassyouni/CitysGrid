@@ -69,6 +69,7 @@ class IntervalTree {
             return nil
         }
         
+        // https://www.math-only-math.com/distance-of-a-point-from-the-origin.html
         let coordinateDistanceFromOrigin = sqrt( (pow(value.latitude, 2) + pow(value.longitude, 2)) )
         
         return nodeFor(value: value, parent: head, coordinateDistanceFromOrigin: coordinateDistanceFromOrigin)

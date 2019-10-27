@@ -214,12 +214,12 @@
 		04BE56C82345F31E0097161C /* Regions */ = {
 			isa = PBXGroup;
 			children = (
+				04549E382365B82A00BB4F30 /* RegionsCreator.swift */,
 				04BE56C92345F3390097161C /* Region.swift */,
 				04BE56CC2345F3680097161C /* TreeNode.swift */,
 				04DE18642344B03B00D74FC4 /* Tree.swift */,
 				04BE56CE2345F6D20097161C /* Coordinate.swift */,
 				04C7911E2354BCB1005AF7C4 /* EdgeCoordinates.swift */,
-				04549E382365B82A00BB4F30 /* RegionsCreator.swift */,
 			);
 			path = Regions;
 			sourceTree = "<group>";

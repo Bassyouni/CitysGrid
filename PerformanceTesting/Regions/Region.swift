@@ -44,6 +44,7 @@ extension Region {
         return Coordinate(latitude: (edgeCoordinates.edgeB.latitude + edgeCoordinates.edgeD.latitude) / 2, longitude: (edgeCoordinates.edgeB.longitude + edgeCoordinates.edgeD.longitude) / 2)
     }
     
+    // https://www.math-only-math.com/distance-of-a-point-from-the-origin.html
     var distanceFromOrigin: Double {
         return sqrt( (pow(centerCoordinate.latitude, 2) + pow(centerCoordinate.longitude, 2)) )
     }
