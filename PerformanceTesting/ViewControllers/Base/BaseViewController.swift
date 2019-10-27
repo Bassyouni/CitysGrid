@@ -12,6 +12,7 @@ import RxSwift
 
 class BaseViewController: UIViewController {
     
+    // MARK: - variables
     var tree: IntervalTree!
     var mapView: GMSMapView!
     var regions = [Region]()
@@ -19,28 +20,32 @@ class BaseViewController: UIViewController {
     
     let colors: [UIColor] = [UIColor.red, .blue, .magenta, .black, .purple, .cyan, .brown, .darkGray, .orange]
     
+    
+    // MARK: - view lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
     
         configureUI()
         if !(self is RegionShowerViewController) {
-            let aboDuhbiCoordinates = [Coordinate(latitude: 24.604503, longitude: 54.844086),
-                               Coordinate(latitude: 24.138950, longitude: 54.816490),
-                               Coordinate(latitude: 24.173921, longitude: 54.256488),
-                               Coordinate(latitude: 24.624247, longitude: 54.285306)]
+//            let aboDuhbiCoordinates = [Coordinate(latitude: 24.604503, longitude: 54.844086),
+//                               Coordinate(latitude: 24.138950, longitude: 54.816490),
+//                               Coordinate(latitude: 24.173921, longitude: 54.256488),
+//                               Coordinate(latitude: 24.624247, longitude: 54.285306)]
             
             let dubaiCoordinates = [Coordinate(latitude: 25.36308, longitude: 55.288780)
                                     ,Coordinate(latitude: 25.234892, longitude: 55.562463)
                                     ,Coordinate(latitude: 24.953261, longitude: 54.812796)
                                     ,Coordinate(latitude: 24.794440, longitude: 55.077634)]
             
-            setupGridWithEdgeCoordinates(dubaiCoordinates)
+            regions = RegionsCreator.regionsFrom(coordinates: dubaiCoordinates)
+            
+            addRegionsPolygons()
             fitMapToCoordinates(dubaiCoordinates)
             addShowRegionButton()
         }
         
         
-        setupRegions()
+        setupRegionsTree()
         setupMQTT()
     }
     
@@ -59,10 +64,25 @@ class BaseViewController: UIViewController {
         }
     }
     
+    
+    // MARK: - UI initlization
     func configureUI() {
         view.backgroundColor = .purple
         setupMap()
         
+    }
+    
+    func addShowRegionButton() {
+        let button = UIButton(frame: .zero)
+        button.setImage(#imageLiteral(resourceName: "add"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "add"), for: .selected)
+        button.backgroundColor = .init(red: 66/255, green: 139/255, blue: 199/255, alpha: 1)
+        
+        view.addSubview(button)
+        button.anchor(top: nil, leading: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 25, right: 25), size: .init(width: 50, height: 50))
+        button.layer.cornerRadius = 25
+        
+        button.addTarget(self, action: #selector(showRegionButtonPressed), for: .touchUpInside)
     }
     
     func setupMap() {
@@ -71,60 +91,12 @@ class BaseViewController: UIViewController {
         view.addSubview(mapView)
     }
     
-    func putMarkersOnMap(from coordinates: [[Coordinate]]) {
-        for i in 0..<coordinates.count {
-            for j in 0..<coordinates[i].count {
-                let marker = GMSMarker(position: coordinates[i][j].coordinate2D)
-                marker.title = "\(i) \(j)"
-                marker.map = self.mapView
-            }
-        }
-    }
     
-    func addRegionsPolygons(with grid: [[Coordinate]]) {
-        var polygonsPathArray = [GMSMutablePath]()
-        
-        for i in 0..<grid.count - 1
-        {
-            for j in 0..<(grid[i].count - 1)
-            {
-                let path = GMSMutablePath()
-                let firstPoint = grid[i][j]
-                let secondPoint = grid[i + 1][j]
-                let thirdPoint = grid[i + 1][j + 1]
-                let fourthPoint = grid[i][j + 1]
-                
-                path.add( firstPoint.coordinate2D )
-                path.add( secondPoint.coordinate2D )
-                path.add( thirdPoint.coordinate2D)
-                path.add( fourthPoint.coordinate2D )
-                
-                let edgeCoordinates = EdgeCoordinates([firstPoint, secondPoint, thirdPoint, fourthPoint])
-                regions.append(Region(id: j + i, edgeCoordinates: edgeCoordinates, neighbours: []))
-                polygonsPathArray.append(path)
-            }
-        }
-        
-        addNeighnours(rowCount: (grid.first?.count ?? 0) - 1 )
-        
-        
-        
-        for (i , path) in polygonsPathArray.enumerated()
-        {
-            let polygon = GMSPolygon(path: path)
-            polygon.fillColor = colors[i % colors.count].withAlphaComponent(0.2)
-            polygon.strokeColor = colors[i % colors.count]
-            polygon.strokeWidth = 2
-            polygon.map = mapView
-        }
-        
-        
-        //        putMarkersOnMap(from: [regions.map { $0.centerCoordinate }] )
-        
-    }
-    
+    // MARK: - MQTT initlization
     func setupMQTT() {
+        
         MQTTManager.sharedConnection.connect()
+        
         MQTTManager.sharedConnection.connectionStatus
             .retry()
             .subscribe(onNext: { (isConnected) in
@@ -142,6 +114,61 @@ class BaseViewController: UIViewController {
         
     }
     
+    
+    // MARK: - constructing Tree
+    @objc func setupRegionsTree() {
+        
+        tree = IntervalTree()
+        regions.sort()
+        
+        tree.constructTreeWith(regions: regions)
+        
+        tree.print2dD()
+        
+    }
+    
+    
+    // MARK: - actions
+    @objc func showRegionButtonPressed() {
+        navigationController?.pushViewController(AddCoordinatesViewController(), animated: true)
+    }
+    
+}
+
+// MARK: - Map operations
+extension BaseViewController {
+    func putMarkersOnMap(from coordinates: [[Coordinate]]) {
+        for i in 0..<coordinates.count {
+            for j in 0..<coordinates[i].count {
+                let marker = GMSMarker(position: coordinates[i][j].coordinate2D)
+                marker.title = "\(i) \(j)"
+                marker.map = self.mapView
+            }
+        }
+    }
+    
+    func addRegionsPolygons() {
+        
+        for (i, region) in regions.enumerated()
+        {
+            let path = GMSMutablePath()
+            
+            path.add( region.edgeCoordinates.edgeA.coordinate2D )
+            path.add( region.edgeCoordinates.edgeB.coordinate2D )
+            path.add( region.edgeCoordinates.edgeC.coordinate2D)
+            path.add( region.edgeCoordinates.edgeD.coordinate2D )
+    
+            let polygon = GMSPolygon(path: path)
+            polygon.fillColor = colors[i % colors.count].withAlphaComponent(0.2)
+            polygon.strokeColor = colors[i % colors.count]
+            polygon.strokeWidth = 2
+            polygon.map = mapView
+        }
+
+        //        putMarkersOnMap(from: [regions.map { $0.centerCoordinate }] )
+        
+    }
+    
     func fitMapToCoordinates(_ coordinates: [Coordinate]) {
         let firstLocation = coordinates.first!
         
@@ -154,23 +181,4 @@ class BaseViewController: UIViewController {
         let update = GMSCameraUpdate.fit(bounds, withPadding: CGFloat(15))
         self.mapView.animate(with: update)
     }
-    
-    func addShowRegionButton() {
-        let button = UIButton(frame: .zero)
-        button.setImage(#imageLiteral(resourceName: "add"), for: .normal)
-        button.setImage(#imageLiteral(resourceName: "add"), for: .selected)
-        button.backgroundColor = .init(red: 66/255, green: 139/255, blue: 199/255, alpha: 1)
-        
-        view.addSubview(button)
-        button.anchor(top: nil, leading: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 25, right: 25), size: .init(width: 50, height: 50))
-        button.layer.cornerRadius = 25
-        
-        button.addTarget(self, action: #selector(showRegionButtonPressed), for: .touchUpInside)
-    }
-    
-    @objc func showRegionButtonPressed() {
-        navigationController?.pushViewController(AddCoordinatesViewController(), animated: true)
-    }
-    
-    
 }

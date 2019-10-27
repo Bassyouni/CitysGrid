@@ -29,7 +29,8 @@ class RegionShowerViewController: BaseViewController {
         
         self.title = "Region"
         
-        self.setupGridWithEdgeCoordinates(coordinates)
+        regions = RegionsCreator.regionsFrom(coordinates: coordinates)
+        addRegionsPolygons()
         fitMapToCoordinates(coordinates)
     }
     
@@ -37,7 +38,7 @@ class RegionShowerViewController: BaseViewController {
         
     }
     
-    override func setupRegions() {
+    override func setupRegionsTree() {
         
     }
     

@@ -1,19 +1,27 @@
 //
-//  BaseViewController+Extension.swift
+//  RegionsCreator.swift
 //  PerformanceTesting
 //
-//  Created by Bassyouni on 10/20/19.
+//  Created by Bassyouni on 10/27/19.
 //  Copyright © 2019 Bassyouni. All rights reserved.
 //
 
 import Foundation
 
-extension BaseViewController {
+
+class RegionsCreator
+{
+    // MARK: - public functions
+    static func regionsFrom(coordinates: [Coordinate]) -> [Region] {
+        return setupGridWithEdgeCoordinates(coordinates)
+    }
     
-    func setupGridWithEdgeCoordinates(_ coordinates: [Coordinate]) {
+    
+    // MARK: - private functions
+    class private func setupGridWithEdgeCoordinates(_ coordinates: [Coordinate]) -> [Region] {
         guard coordinates.count == 4 else {
             print("edges must be only 4 coordinates")
-            return
+            return []
         }
         
         let sortedLlatitudeArray = coordinates.sorted(by: { a,b in a.latitude < b.latitude })
@@ -28,19 +36,11 @@ extension BaseViewController {
         let bottomLeft = bottomLatitude[0]
         let bottomRight = bottomLatitude[1]
         
-        setupGrid(topLeft: topLeft, topRight: topRight, bottomLeft: bottomLeft, bottomRight: bottomRight)
+        return setupGrid(topLeft: topLeft, topRight: topRight, bottomLeft: bottomLeft, bottomRight: bottomRight)
     }
     
-    func setupGrid() {
-        let topLeft = Coordinate(latitude: 25.36308, longitude: 55.288780)
-        let topRight = Coordinate(latitude: 25.234892, longitude: 55.562463)
-        let bottomLeft = Coordinate(latitude: 24.953261, longitude: 54.812796)
-        let bottomRight = Coordinate(latitude: 24.794440, longitude: 55.077634)
-        setupGrid(topLeft: topLeft, topRight: topRight, bottomLeft: bottomLeft, bottomRight: bottomRight)
-    }
+    class private func setupGrid(topLeft: Coordinate, topRight: Coordinate, bottomLeft: Coordinate, bottomRight: Coordinate) -> [Region] {
     
-    fileprivate func setupGrid(topLeft: Coordinate, topRight: Coordinate, bottomLeft: Coordinate, bottomRight: Coordinate) {
-        
         var bottomLengthCoordinate: Coordinate!
         var topLengthCoordinate: Coordinate!
         var startingWidthCoordinate: Coordinate!
@@ -148,13 +148,13 @@ extension BaseViewController {
         let gridArray = getGridFormArrays(length: arrayLength, width: arrayWidth)
         
         
-        addRegionsPolygons(with: gridArray)
-        addNeighnours(rowCount: (gridArray.first?.count ?? 0) - 1 )
-        
-        
+        let regions = createRegions(with: gridArray)
+        addNeighbors(to: regions, rowCount: (gridArray.first?.count ?? 0) - 1)
+
+        return regions
     }
     
-    func getGridFormArrays(length arrayLength: [Coordinate], width arrayWidth: [Coordinate]) -> [[Coordinate]] {
+    class private func getGridFormArrays(length arrayLength: [Coordinate], width arrayWidth: [Coordinate]) -> [[Coordinate]] {
         
         let lengthEquation = getSlopeAndBValueFrom(point1: arrayLength[0], point2: arrayLength[arrayLength.count - 1])
         let widthEquation = getSlopeAndBValueFrom(point1: arrayWidth[0], point2: arrayWidth[arrayWidth.count - 1])
@@ -186,7 +186,7 @@ extension BaseViewController {
         return gridArray
     }
     
-    func getSlopeAndBValueFrom(point1: Coordinate, point2: Coordinate) -> (slope: Double, bValue: Double) {
+    class private func getSlopeAndBValueFrom(point1: Coordinate, point2: Coordinate) -> (slope: Double, bValue: Double) {
         
         let lineSlope = (point2.longitude - point1.longitude) / (point2.latitude - point1.latitude)
         
@@ -198,35 +198,27 @@ extension BaseViewController {
         return (lineSlope, lineBValue)
     }
     
-    
-    
-    // MARK: - saving and retrieving regions
-    @objc func setupRegions() {
+    class private func createRegions(with grid: [[Coordinate]]) -> [Region] {
         
-        tree = IntervalTree()
-        regions.sort()
+        var regions = [Region]()
         
-        tree.constructTreeWith(regions: regions)
-        
-        let tacmeLocation = Coordinate(latitude: 25.285876, longitude: 55.477316)
-        let sharjaOutSideDubaiLocation = Coordinate(latitude: 25.298839, longitude: 55.481870)
-        
-        
-        //        if let node = tree.nodeFor(value: tacmeLocation) {
-        //            putMarkersOnMap(from: [[tacmeLocation]])
-        //            print(node)
-        //        }
-        //
-        //        if let node = tree.nodeFor(value: sharjaOutSideDubaiLocation) {
-        //            putMarkersOnMap(from: [[sharjaOutSideDubaiLocation]])
-        //            print(node)
-        //        }
-        
-        tree.print2dD()
-        
+        for i in 0..<grid.count - 1
+        {
+            for j in 0..<(grid[i].count - 1)
+            {
+                let firstPoint = grid[i][j]
+                let secondPoint = grid[i + 1][j]
+                let thirdPoint = grid[i + 1][j + 1]
+                let fourthPoint = grid[i][j + 1]
+                
+                let edgeCoordinates = EdgeCoordinates([firstPoint, secondPoint, thirdPoint, fourthPoint])
+                regions.append(Region(id: Int("\(j+1)\(i+1)")!, edgeCoordinates: edgeCoordinates, neighbours: []))
+            }
+        }
+        return regions
     }
     
-    func addNeighnours(rowCount: Int) {
+    class private func addNeighbors(to regions: [Region], rowCount: Int) {
         
         guard rowCount > 0 && regions.count % rowCount == 0 else { return }
         
@@ -286,6 +278,7 @@ extension BaseViewController {
             }
         }
         
-        
     }
+    
 }
+

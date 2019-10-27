@@ -13,11 +13,11 @@
 		043EADDA235F39E90051C4F4 /* ShakingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EADD9235F39E90051C4F4 /* ShakingTextField.swift */; };
 		043EADDE235F3E9A0051C4F4 /* RegionShowerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EADDD235F3E9A0051C4F4 /* RegionShowerViewController.swift */; };
 		0443B78D235C645700C00ED2 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0443B78C235C645700C00ED2 /* BaseViewController.swift */; };
-		0443B78F235C649700C00ED2 /* BaseViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0443B78E235C649700C00ED2 /* BaseViewController+Extension.swift */; };
 		0443B791235C651900C00ED2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0443B790235C651900C00ED2 /* Constants.swift */; };
 		0443B793235C654200C00ED2 /* DriverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0443B792235C654200C00ED2 /* DriverViewController.swift */; };
 		0443B795235C665B00C00ED2 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0443B794235C665B00C00ED2 /* Car.swift */; };
 		0443B797235C666A00C00ED2 /* CustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0443B796235C666A00C00ED2 /* CustomerViewController.swift */; };
+		04549E392365B82A00BB4F30 /* RegionsCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04549E382365B82A00BB4F30 /* RegionsCreator.swift */; };
 		04BE56CA2345F3390097161C /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BE56C92345F3390097161C /* Region.swift */; };
 		04BE56CD2345F3680097161C /* TreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BE56CC2345F3680097161C /* TreeNode.swift */; };
 		04BE56CF2345F6D20097161C /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BE56CE2345F6D20097161C /* Coordinate.swift */; };
@@ -57,11 +57,11 @@
 		043EADD9235F39E90051C4F4 /* ShakingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShakingTextField.swift; sourceTree = "<group>"; };
 		043EADDD235F3E9A0051C4F4 /* RegionShowerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionShowerViewController.swift; sourceTree = "<group>"; };
 		0443B78C235C645700C00ED2 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		0443B78E235C649700C00ED2 /* BaseViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseViewController+Extension.swift"; sourceTree = "<group>"; };
 		0443B790235C651900C00ED2 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0443B792235C654200C00ED2 /* DriverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverViewController.swift; sourceTree = "<group>"; };
 		0443B794235C665B00C00ED2 /* Car.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		0443B796235C666A00C00ED2 /* CustomerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewController.swift; sourceTree = "<group>"; };
+		04549E382365B82A00BB4F30 /* RegionsCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionsCreator.swift; sourceTree = "<group>"; };
 		04BE56C92345F3390097161C /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 		04BE56CC2345F3680097161C /* TreeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeNode.swift; sourceTree = "<group>"; };
 		04BE56CE2345F6D20097161C /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
@@ -166,7 +166,6 @@
 			isa = PBXGroup;
 			children = (
 				0443B78C235C645700C00ED2 /* BaseViewController.swift */,
-				0443B78E235C649700C00ED2 /* BaseViewController+Extension.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -220,6 +219,7 @@
 				04DE18642344B03B00D74FC4 /* Tree.swift */,
 				04BE56CE2345F6D20097161C /* Coordinate.swift */,
 				04C7911E2354BCB1005AF7C4 /* EdgeCoordinates.swift */,
+				04549E382365B82A00BB4F30 /* RegionsCreator.swift */,
 			);
 			path = Regions;
 			sourceTree = "<group>";
@@ -567,10 +567,10 @@
 			files = (
 				043EADD6235F30F10051C4F4 /* AddCoordinatesViewController.swift in Sources */,
 				04DE18652344B03B00D74FC4 /* Tree.swift in Sources */,
-				0443B78F235C649700C00ED2 /* BaseViewController+Extension.swift in Sources */,
 				0443B795235C665B00C00ED2 /* Car.swift in Sources */,
 				04BE56CD2345F3680097161C /* TreeNode.swift in Sources */,
 				04C7911F2354BCB1005AF7C4 /* EdgeCoordinates.swift in Sources */,
+				04549E392365B82A00BB4F30 /* RegionsCreator.swift in Sources */,
 				043318302355C3F3004754A7 /* MQTTWrapper.swift in Sources */,
 				0443B791235C651900C00ED2 /* Constants.swift in Sources */,
 				0443B797235C666A00C00ED2 /* CustomerViewController.swift in Sources */,

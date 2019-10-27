@@ -51,6 +51,8 @@ extension Region {
 
 extension Region
 {
+    // https://math.stackexchange.com/a/190373
+    // https://stackoverflow.com/questions/2752725/finding-whether-a-point-lies-inside-a-rectangle-or-not/37865332#37865332
     fileprivate func vector(point1: Coordinate, point2: Coordinate) -> (x: Double, y: Double) {
         return ((point2.latitude - point1.latitude), (point2.longitude - point1.longitude))
     }

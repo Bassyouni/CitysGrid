@@ -69,10 +69,12 @@ class IntervalTree {
             return nil
         }
         
-        return nodeFor(value: value, parent: head)
+        let coordinateDistanceFromOrigin = sqrt( (pow(value.latitude, 2) + pow(value.longitude, 2)) )
+        
+        return nodeFor(value: value, parent: head, coordinateDistanceFromOrigin: coordinateDistanceFromOrigin)
     }
     
-    fileprivate func nodeFor(value: Coordinate, parent: TreeNode) -> TreeNode? {
+    fileprivate func nodeFor(value: Coordinate, parent: TreeNode, coordinateDistanceFromOrigin: Double) -> TreeNode? {
 
         
         print(parent)
@@ -80,14 +82,12 @@ class IntervalTree {
         {
             return parent
         }
-        let coordinateDistanceFromOrigin = sqrt( (pow(value.latitude, 2) + pow(value.longitude, 2)) )
-        
         
         if coordinateDistanceFromOrigin < parent.region.distanceFromOrigin
         {
             if let left = parent.left
             {
-                let newNode = nodeFor(value: value, parent: left)
+                let newNode = nodeFor(value: value, parent: left, coordinateDistanceFromOrigin: coordinateDistanceFromOrigin)
                 if newNode != nil {
                     return newNode
                 }
@@ -97,7 +97,7 @@ class IntervalTree {
         {
             if let right = parent.right
             {
-                let newNode = nodeFor(value: value, parent: right)
+                let newNode = nodeFor(value: value, parent: right, coordinateDistanceFromOrigin: coordinateDistanceFromOrigin)
                 if newNode != nil {
                     return newNode
                 }
