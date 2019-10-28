@@ -156,6 +156,15 @@ class RegionsCreator
     
     class private func getGridFormArrays(length arrayLength: [Coordinate], width arrayWidth: [Coordinate]) -> [[Coordinate]] {
         
+        // Reference's
+        // Point of intersection between two lines
+        // https://www.mathopenref.com/coordintersection.html
+        // how to get the slope of line parallel to another line
+        // http://www.mesacc.edu/~scotz47781/mat150/notes/eqn_line/Equation_Line_Parallel_Perpendicular_Notes.pdf
+        // how to get the b value with slope and one point
+        // https://www.mathplanet.com/education/algebra-1/formulating-linear-equations/writing-linear-equations-using-the-slope-intercept-form
+        
+        
         let lengthEquation = getSlopeAndBValueFrom(point1: arrayLength[0], point2: arrayLength[arrayLength.count - 1])
         let widthEquation = getSlopeAndBValueFrom(point1: arrayWidth[0], point2: arrayWidth[arrayWidth.count - 1])
         

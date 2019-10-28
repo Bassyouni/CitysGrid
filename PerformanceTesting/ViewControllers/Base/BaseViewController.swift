@@ -52,6 +52,7 @@ class BaseViewController: UIViewController {
     }
     
     func SaveRegionToFile() {
+        // Saves the file in the documents direectory
         FileSavingManager.save(jsony: regions, toFileName: "DubaiRegion")
     }
     
